@@ -16,10 +16,8 @@ export function HeroSection() {
 
       {/* Hero Text */}
       <div className="relative z-10 text-right text-white">
-        <h1 className="mb-4 text-2xl font-normal leading-tight md:text-5xl">
-          منصتك المجانيه لبيع وشراء
-          <br />
-          السيارات بسهولة
+        <h1 className="max-w-2xl mb-4 text-2xl font-normal !leading-tight md:text-5xl">
+          منصتك المجانيه لبيع وشراء السيارات بسهولة
         </h1>
         <p className="text-sm md:text-lg opacity-90">
           اكتشف سيارات مستعملة وموثوقة، قارن الأسعار،

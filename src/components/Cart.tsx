@@ -5,10 +5,10 @@ import ProductCart from "./ProductCart";
 import LocationCart from "./LocationCart";
 import { Button } from "./ui/button";
 
-interface LocationCardProps {
+interface IProps {
   variant: "car" | "map";
   title: string;
-  price?: string;
+  price?: number;
   location: string;
   phone?: string;
   imageUrl: string;
@@ -26,12 +26,12 @@ export function Cart({
   imageUrl,
   typeCar,
   Speedometer,
-}: LocationCardProps) {
+}: IProps) {
   return (
-    <Card className="w-full max-w-sm overflow-hidden rtl">
+    <Card className="w-full overflow-hidden rtl">
       <div className="relative">
         {/* Image Container with exact padding */}
-        <div className="relative h-56 w-full">
+        <div className="relative w-full h-56">
           <Image
             src={imageUrl || "/placeholder.svg"}
             alt={title}
@@ -39,11 +39,11 @@ export function Cart({
             className="object-cover rounded-3xl"
           />
           {variant === "car" && (
-            <div className="relative top-8 flex items-center gap-2">
+            <div className="relative flex items-center gap-2 top-8">
               <Button
                 variant={"secondary"}
                 size={"icon"}
-                className="absolute left-4 rounded-full"
+                className="absolute rounded-full left-4"
               >
                 <Image
                   src="/Icons/redHeart.png"
@@ -53,13 +53,13 @@ export function Cart({
                   className="text-primary"
                 />
               </Button>
-              <span className="absolute right-4 rounded-lg gradient-spacial px-4 py-2 text-bodyS font-medium">
+              <span className="absolute px-4 py-2 font-medium rounded-lg right-4 gradient-spacial text-bodyS">
                 مميز
               </span>
             </div>
           )}
           {variant === "map" && (
-            <div className="absolute left-2 top-0">
+            <div className="absolute top-0 left-2">
               <Button variant="secondary" size="sm" className="!text-bodyS">
                 <MapPin size={20} />
                 عرض على الخريطة

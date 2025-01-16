@@ -1,4 +1,4 @@
-import { CategoryType, navigationLinkType } from "@/types"
+import { CategoryType, navigationLinkType, ProductType } from "@/types"
 
 export const navigationLink : navigationLinkType[] = [
     { title: "الرئيسية", href: "/" },
@@ -80,37 +80,100 @@ export const categories: CategoryType[] = [
     {
     id: 'cars',
     title: 'سيارات',
-    image: '/Images/سيارات.jpg',
+    image: '/Images/سيارات.png',
     href: '/cars'
   },
     {
     id: 'spare-parts',
     title: 'قطع غيار',
-    image: '/Images/قطع غيار.jpg',
+    image: '/Images/قطع غيار.png',
     href: '/spare-parts'
   },
   {
     id: 'car-numbers',
     title: 'ارقام سيارات',
-    image: '/Images/لوحات.jpg',
+    image: '/Images/لوحات.png',
     href: '/car-numbers'
   },
   {
     id: 'services',
     title: 'خدمات',
-    image: '/Images/لوحات.jpg',
+    image: '/Images/خدمات.png',
     href: '/services'
   },
     {
     id: 'accident-cars',
     title: 'سيارات حوادث و سكراب',
-    image: '/Images/سيارات حوادث.jpg',
+    image: '/Images/سيارات حوادث.png',
     href: '/accident-cars'
   },
   {
     id: 'showrooms',
     title: 'معارض',
-    image: '/Images/معارض.jpg',
+    image: '/Images/معارض.png',
     href: '/showrooms'
   }
+]
+
+export const Products: ProductType[] = [
+    {
+        id: 1,
+        title: 'مكتبة الشوا��ع الأخرى',
+        price: 15000,
+        image: '/Images/product.png',
+        href: '/product/1',
+        location: 'القاهرة',
+        typeCar: 'سيارات ��ديدة',
+        speedometer: '25000',
+        special: true,
+        category: 'cars'
+  },
+    {
+        id: 2,
+        title: 'مكتبة الشوا��ع الأخرى',
+        price: 15000,
+        image: '/Images/product.png',
+        href: '/product/1',
+        location: 'القاهرة',
+        typeCar: 'سيارات ��ديدة',
+        speedometer: '25000',
+        special: true,
+        category: 'cars'
+  },
+    {
+        id: 3,
+        title: 'مكتبة الشوا��ع الأخرى',
+        price: 15000,
+        image: '/Images/product.png',
+        href: '/product/1',
+        location: 'القاهرة',
+        typeCar: 'سيارات ��ديدة',
+        speedometer: '25000',
+        special: true,
+        category: 'cars'
+  },
+    {
+        id: 4,
+        title: 'مكتبة الشوا��ع الأخرى',
+        price: 15000,
+        image: '/Images/product.png',
+        href: '/product/1',
+        location: 'القاهرة',
+        typeCar: 'سيارات ��ديدة',
+        speedometer: '25000',
+        special: true,
+        category: 'cars'
+  },
+    {
+        id: 5,
+        title: 'مكتبة الشوا��ع الأخرى',
+        price: 15000,
+        image: '/Images/product.png',
+        href: '/product/1',
+        location: 'القاهرة',
+        typeCar: 'سيارات ��ديدة',
+        speedometer: '25000',
+        special: true,
+        category: 'cars'
+  },
 ]
