@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,31 +8,54 @@ import {
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
 import { ChevronDown, MapPin } from "lucide-react";
-import { country } from "@/constants";
+import { useGetCountriesQuery } from "@/store/apis/countries&cities";
+import { countryType } from "@/types";
+import Image from "next/image";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { setCountry } from "@/store/features/country";
+import { RootState } from "@/store/store";
+import React from "react";
 
 interface IProps {
   className?: string;
 }
 
 const DropDownCountry = ({ className }: IProps) => {
-  const [countryVal, setCountryVal] = useState<string>(country[0].name);
+  const { data } = useGetCountriesQuery("countries");
+  const country = React.useMemo(() => data?.data?.countries || [], [data]);
+  const { name_ar } = useAppSelector(
+    (state: RootState) => state.Country.Country
+  );
+  const dispatch = useAppDispatch();
 
   return (
-    <DropdownMenu>
+    <DropdownMenu dir="rtl">
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className={`text-white ${className}`}>
           <MapPin />
-          {countryVal}
+          {name_ar}
           <ChevronDown className="w-4 h-4 mr-2" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="w-full">
-        {country.map((item) => (
+      <DropdownMenuContent align="start" className="w-full space-y-2">
+        {country.map((item: countryType) => (
           <DropdownMenuItem
-            key={item.value}
-            onClick={() => setCountryVal(item.name)}
+            key={item.id}
+            onClick={() => {
+              dispatch(setCountry(item));
+            }}
           >
-            {item.name}
+            <div className="flex items-center gap-2">
+              <h6>{item.name_ar}</h6>
+              <Image
+                src={item.image || "/default-image.png"}
+                alt={item.name_ar}
+                width={100}
+                height={100}
+                className="w-5 h-5 rounded-sm"
+                loading="lazy"
+              />
+            </div>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

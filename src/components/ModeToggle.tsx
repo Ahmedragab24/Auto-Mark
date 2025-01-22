@@ -26,7 +26,7 @@ export function ModeToggle({ className }: IProps) {
   }, [theme]);
 
   return (
-    <DropdownMenu>
+    <DropdownMenu dir="rtl">
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className={`relative  text-white ${className}`}>
           <Sun className="transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" />

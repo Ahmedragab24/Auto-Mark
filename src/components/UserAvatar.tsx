@@ -10,16 +10,17 @@ import Link from "next/link";
 
 const UserAvatar = () => {
   return (
-    <DropdownMenu>
+    <DropdownMenu dir="rtl">
       <DropdownMenuTrigger asChild>
         <Button
           variant={"ghost"}
-          className="cursor-pointer !p-0 rounded-full group"
+          className="cursor-pointer !p-0 rounded-full group transition-all duration-500"
         >
           <Avatar className="w-9 h-9">
             <AvatarImage
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+              src="/Logo/user.png"
               alt="User Avatar"
+              className="bg-background"
             />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
@@ -28,10 +29,10 @@ const UserAvatar = () => {
           </span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-52">
+      <DropdownMenuContent align="end" className="w-fit">
         <DropdownMenuItem>
-          <Link href={"#"} className="cursor-pointer">
-            Profile
+          <Link href={"/user"} className="cursor-pointer">
+            حسابي
           </Link>
         </DropdownMenuItem>
 

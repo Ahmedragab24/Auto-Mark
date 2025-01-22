@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,59 +10,60 @@ import {
 import { Button } from "./ui/button";
 import { ChevronDown, Globe } from "lucide-react";
 import Image from "next/image";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { RootState } from "@/store/store";
+import { setLanguage } from "@/store/features/language";
+import { languages } from "@/constants";
+import { langType } from "@/types";
 
 interface IProps {
   className?: string;
 }
 
-type lang = "الانجليزية" | "العربية";
+const DropDownLang = ({ className = "" }: IProps) => {
+  const dispatch = useAppDispatch();
+  const { language } = useAppSelector((state: RootState) => state.Language);
 
-const DropDownLang = ({ className }: IProps) => {
-  const [Languages, setLanguages] = React.useState<lang>("العربية");
+  const [selectedLanguage, setSelectedLanguage] = useState("العربية");
 
-  const toggleLanguage = (lang: lang) => {
-    localStorage.setItem("lang", lang);
-    setLanguages(lang);
+  useEffect(() => {
+    const currentLanguage = languages.find((lang) => lang.code === language);
+    if (currentLanguage) setSelectedLanguage(currentLanguage.name);
+  }, [language]);
+
+  const handleLanguageChange = (code: langType) => {
+    dispatch(setLanguage(code));
   };
 
   return (
-    <DropdownMenu>
+    <DropdownMenu dir="rtl">
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className={`text-white ${className}`}>
+        <Button
+          variant="ghost"
+          className={`flex items-center gap-2 text-white ${className}`}
+        >
           <Globe />
-          {Languages}
-          <ChevronDown className="w-4 h-4 mr-2" />
+          {selectedLanguage}
+          <ChevronDown className="w-4 h-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="center" className="w-full">
-        <DropdownMenuItem
-          className="flex items-center justify-center gap-2"
-          onClick={toggleLanguage.bind(null, "العربية")}
-        >
-          <Image
-            src="/Flags/Saudi Arabia (SA).png"
-            alt="egypt"
-            width={20}
-            height={20}
-            loading="lazy"
-            className="w-4 h-3"
-          />
-          <h4>العربية</h4>
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          className="flex items-center justify-center gap-2"
-          onClick={toggleLanguage.bind(null, "الانجليزية")}
-        >
-          <Image
-            src="/Flags/United Kingdom (GB).png"
-            alt="egypt"
-            width={20}
-            height={20}
-            loading="lazy"
-            className="w-4 h-3"
-          />
-          <h4>الانجليزية</h4>
-        </DropdownMenuItem>
+      <DropdownMenuContent align="center" className="w-40">
+        {languages.map(({ code, name, flag }) => (
+          <DropdownMenuItem
+            key={code}
+            className="flex items-center justify-start gap-2 px-2 py-1 cursor-pointer hover:bg-gray-100"
+            onClick={() => handleLanguageChange(code as langType)}
+          >
+            <Image
+              src={flag}
+              alt={name}
+              width={20}
+              height={20}
+              className="w-5 h-4"
+            />
+            <span>{name}</span>
+          </DropdownMenuItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );

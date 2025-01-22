@@ -2,8 +2,10 @@ import React from "react";
 import { ModeToggle } from "./ModeToggle";
 import DropDownCountry from "./DropDownCountry";
 import DropDownLang from "./DropDownLang";
-import UserAvatar from "./UserAvatar";
 import TopBarMenuMobile from "./TopBarMenuMobile";
+// import LoginModel from "./auth/LoginModel";
+// import { Button } from "./ui/button";
+import UserAvatar from "./UserAvatar";
 
 const TopBar = () => {
   return (
@@ -12,6 +14,9 @@ const TopBar = () => {
         <nav className="flex items-center justify-between h-14">
           {/* Account Section */}
           <UserAvatar />
+          {/* <LoginModel>
+            <Button>Login</Button>
+          </LoginModel> */}
 
           {/* Desktop Navigation */}
           <div className="items-center hidden gap-6 md:flex">

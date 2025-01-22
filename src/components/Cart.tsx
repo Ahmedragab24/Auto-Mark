@@ -1,44 +1,32 @@
 import { Card } from "@/components/ui/card";
-import { MapPin } from "lucide-react";
 import Image from "next/image";
 import ProductCart from "./ProductCart";
-import LocationCart from "./LocationCart";
 import { Button } from "./ui/button";
-
-interface IProps {
-  variant: "car" | "map";
-  title: string;
-  price?: number;
-  location: string;
-  phone?: string;
-  imageUrl: string;
-  isFavorite?: boolean;
-  typeCar?: string;
-  Speedometer?: string;
-}
+import Link from "next/link";
+import { ProductType } from "@/types";
 
 export function Cart({
-  variant,
-  title,
+  id,
+  name,
   price,
-  location,
-  phone,
-  imageUrl,
-  typeCar,
-  Speedometer,
-}: IProps) {
+  city,
+  country,
+  type,
+  image,
+  standard_specification,
+}: ProductType) {
   return (
-    <Card className="w-full overflow-hidden rtl">
-      <div className="relative">
-        {/* Image Container with exact padding */}
-        <div className="relative w-full h-56">
-          <Image
-            src={imageUrl || "/placeholder.svg"}
-            alt={title}
-            fill
-            className="object-cover rounded-3xl"
-          />
-          {variant === "car" && (
+    <Link href={`/categories/${id}`}>
+      <Card className="w-full duration-300 rtl group rounded-3xl hover:shadow-lg hover:bg-secondary">
+        <div className="relative ">
+          {/* Image Container with exact padding */}
+          <div className="relative w-full h-56 overflow-hidden rounded-3xl">
+            <Image
+              src={`${process.env.NEXT_PUBLIC_BASE_URL}${image}`}
+              alt={name}
+              fill
+              className="object-cover duration-300 rounded-3xl group-hover:scale-110"
+            />
             <div className="relative flex items-center gap-2 top-8">
               <Button
                 variant={"secondary"}
@@ -57,31 +45,35 @@ export function Cart({
                 مميز
               </span>
             </div>
-          )}
-          {variant === "map" && (
-            <div className="absolute top-0 left-2">
-              <Button variant="secondary" size="sm" className="!text-bodyS">
-                <MapPin size={20} />
-                عرض على الخريطة
-              </Button>
-            </div>
-          )}
-        </div>
+            {/* {variant === "map" && (
+              <div className="absolute top-0 left-2">
+                <Button variant="secondary" size="sm" className="!text-bodyS">
+                  <MapPin size={20} />
+                  عرض على الخريطة
+                </Button>
+              </div>
+            )} */}
+          </div>
 
-        {/* Content Container */}
-        {variant === "car" && (
+          {/* Content Container */}
+
           <ProductCart
-            title={title}
+            name={name}
             price={price}
-            location={location}
-            typeCar={typeCar}
-            Speedometer={Speedometer}
+            category_id={id}
+            city={city}
+            country={country}
+            image={image}
+            id={id}
+            standard_specification={standard_specification}
+            type={type}
           />
-        )}
-        {variant === "map" && (
-          <LocationCart title={title} location={location} phone={phone} />
-        )}
-      </div>
-    </Card>
+          {/* 
+          {variant === "map" && (
+            <LocationCart title={title} location={location} phone={phone} />
+          )} */}
+        </div>
+      </Card>
+    </Link>
   );
 }

@@ -3,6 +3,8 @@ import { Alexandria } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Footer } from "@/components/layout/Footer";
+import ReduxProvider from "./ReduxProvider";
 
 const geistSans = Alexandria({
   variable: "--font-alexandria-sans",
@@ -33,8 +35,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          {children}
+          <ReduxProvider>
+            <Header />
+            {children}
+            <Footer />
+          </ReduxProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -10,7 +10,6 @@ const SearchBar = ({ className }: IProps) => {
   return (
     <div className={`relative ${className}`}>
       <Input
-        status="Default"
         type="search"
         placeholder="ابحث عن السيارات واكثر...."
         className="w-full text-right border-gray-300 rounded-lg h-14"

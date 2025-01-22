@@ -81,10 +81,24 @@ body {
   }
 
   .section {
-    @apply container px-4 py-12 mx-auto my-14
+    @apply container px-4 mx-auto my-24
   }
 
   .section-title {
     @apply mb-8 text-2xl font-bold text-right
+  }
+
+  .account-container {
+    @apply w-full mx-auto p-8 flex flex-col gap-4 bg-background rounded-xl
+  }
+
+  .no-arrows::-webkit-inner-spin-button,
+  .no-arrows::-webkit-outer-spin-button {
+    @apply appearance-none;
+    margin: 0;
+  }
+
+  .no-arrows {
+    -moz-appearance: textfield;
   }
 }

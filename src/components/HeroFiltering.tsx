@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { brand, carType, city, price, year } from "@/constants";
+import { brand, carType, citiesArray, price, year } from "@/constants";
 
 const HeroFiltering = () => {
   return (
@@ -21,8 +21,8 @@ const HeroFiltering = () => {
               <SelectValue placeholder="اختر المدينة" />
             </SelectTrigger>
             <SelectContent>
-              {city.map(({ name, value }) => (
-                <SelectItem key={value} value={value}>
+              {citiesArray.map(({ name, value }) => (
+                <SelectItem key={name} value={value}>
                   {name}
                 </SelectItem>
               ))}
