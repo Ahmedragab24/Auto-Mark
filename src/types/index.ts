@@ -5,9 +5,17 @@ export interface navigationLinkType {
 
 export type langType = "ar" | "en";
 
+export type CategoriesKeyType =
+  | "car"
+  | "scrap"
+  | "services"
+  | "showroom"
+  | "spare_parts"
+  | "car_numbers";
+
 export interface MainCategoriesType {
   id: number;
-  key: string;
+  key: CategoriesKeyType;
   name_en: string;
   name_ar: string;
   image?: string;

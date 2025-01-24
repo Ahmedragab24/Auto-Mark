@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Footer } from "@/components/layout/Footer";
 import ReduxProvider from "./ReduxProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = Alexandria({
   variable: "--font-alexandria-sans",
@@ -38,6 +39,7 @@ export default function RootLayout({
           <ReduxProvider>
             <Header />
             {children}
+            <Toaster />
             <Footer />
           </ReduxProvider>
         </ThemeProvider>

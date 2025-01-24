@@ -244,6 +244,11 @@ export const brand = [
   { name: "جيبي", value: "jeep" },
   { name: "بيكسي", value: "benz" },
   { name: "بيتشي", value: "peugeot" },
+  { name: "نيسان", value: "nissan" },
+  { name: "سوزوكي", value: "suzuki" },
+  { name: "سيارات سويد", value: "suv" },
+  { name: "سيارات سيدان", value: "sedan" },
+  { name: "سيارات رياضية", value: "sports" },
 ];
 
 export const price = [
@@ -373,4 +378,11 @@ export const addresses = [
     address: "25 شارع الشيخ المكتوي، شارع هزاع الشيخ خليفة",
     phone: "971+ 1234 56789 910",
   },
+];
+
+export const specializations = [
+  { name: "الكل", value: "all" },
+  { name: "تقنية المعلومات", value: "it" },
+  { name: "الطب", value: "medical" },
+  { name: "الهندسة", value: "engineering" },
 ];
