@@ -2,51 +2,50 @@ import { ProductType } from "@/types";
 import { CarFront, CircleGauge, MapPin } from "lucide-react";
 import React from "react";
 
-const ProductCart = ({
-  name,
-  price,
-  city,
-  country,
-  type,
-  standard_specification,
-}: ProductType) => {
+interface IProps {
+  product: ProductType;
+}
+
+const ProductContent = ({ product }: IProps) => {
   return (
     <div className="flex flex-col gap-3 p-4">
       {/* Title and Price Row */}
-      {price && (
+      {product.price && (
         <div className="flex justify-between">
           <div className="flex gap-2">
-            <span className="font-semibold text-primary text-h6">{price}</span>
             <span className="font-semibold text-primary text-h6">
-              {country?.symbol}
+              {product.price}
+            </span>
+            <span className="font-semibold text-primary text-h6">
+              {product.country?.symbol}
             </span>
           </div>
 
-          {type && (
+          {product.type && (
             <span className="p-2 font-semibold text-gray-700 border border-gray-700 rounded-full text-[9px]">
-              {type}
+              {product.type}
             </span>
           )}
         </div>
       )}
-      <h3 className="text-bodyL font-regular">{name}</h3>
+      <h3 className="text-bodyL font-regular">{product.name}</h3>
 
       {/* Location */}
       <div className="flex items-center gap-2 text-sm text-gray-500">
         <MapPin size={16} />
-        <span>{city?.name}</span>
+        <span>{product.city?.name}</span>
       </div>
 
       {/* Speedometer and TypeCar */}
-      {Array.isArray(standard_specification) &&
-        standard_specification.length >= 2 &&
-        standard_specification[0]?.value_ar &&
-        standard_specification[1]?.value_ar && (
+      {Array.isArray(product.standardSpecification) &&
+        product.standardSpecification.length >= 2 &&
+        product.standardSpecification[0]?.value_ar &&
+        product.standardSpecification[1]?.value_ar && (
           <div className="flex items-center gap-3 text-sm text-gray-500">
             <div className="flex items-center gap-2">
               <CircleGauge className="w-5 h-5" />
-              {standard_specification && (
-                <span>{standard_specification[0].value_ar}</span>
+              {product.standardSpecification && (
+                <span>{product.standardSpecification[0].value_ar}</span>
               )}
             </div>
 
@@ -54,8 +53,8 @@ const ProductCart = ({
 
             <div className="flex items-center gap-2">
               <CarFront className="w-5 h-5" />
-              {standard_specification && (
-                <span>{standard_specification[1].value_ar}</span>
+              {product.standardSpecification && (
+                <span>{product.standardSpecification[1].value_ar}</span>
               )}
             </div>
           </div>
@@ -64,4 +63,4 @@ const ProductCart = ({
   );
 };
 
-export default ProductCart;
+export default ProductContent;

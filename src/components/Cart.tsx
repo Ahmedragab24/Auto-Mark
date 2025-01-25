@@ -1,9 +1,9 @@
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
-import ProductCart from "./ProductCart";
 import Link from "next/link";
 import { ProductType } from "@/types";
 import FavoriteButton from "./auth/FavoriteButton";
+import ProductContent from "./ProductCart";
 
 interface IProps {
   product: ProductType;
@@ -12,7 +12,7 @@ interface IProps {
 export function Cart({ product }: IProps) {
   return (
     <Link href={`/categories/${product.id}`}>
-      <Card className="w-full duration-300 rtl group rounded-3xl hover:shadow-lg hover:bg-secondary">
+      <Card className="w-full duration-300 rtl group rounded-3xl hover:shadow-lg hover:bg-secondary overflow-hidden transition-shadow">
         <div className="relative ">
           {/* Image Container with exact padding */}
           <div className="relative w-full h-56 overflow-hidden rounded-3xl">
@@ -31,17 +31,7 @@ export function Cart({ product }: IProps) {
           </div>
 
           {/* Content Container */}
-          <ProductCart
-            name={product.name}
-            price={product.price}
-            category_id={product.id}
-            city={product.city}
-            country={product.country}
-            image={product.image}
-            id={product.id}
-            standard_specification={product.standard_specification}
-            type={product.type}
-          />
+          <ProductContent product={product} />
         </div>
       </Card>
     </Link>
