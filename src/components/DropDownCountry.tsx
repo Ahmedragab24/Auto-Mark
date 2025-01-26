@@ -8,13 +8,13 @@ import {
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
 import { ChevronDown, MapPin } from "lucide-react";
-import { useGetCountriesQuery } from "@/store/apis/countries&cities";
 import { countryType } from "@/types";
 import Image from "next/image";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { setCountry } from "@/store/features/country";
-import { RootState } from "@/store/store";
 import React, { useEffect, useState } from "react";
+import { useGetCountriesQuery } from "@/store/apis/countries&cities";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { RootState } from "@/store/store";
+import { setCountry } from "@/store/features/country";
 
 interface IProps {
   className?: string;

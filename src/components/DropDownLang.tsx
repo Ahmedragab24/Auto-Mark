@@ -10,11 +10,11 @@ import {
 import { Button } from "./ui/button";
 import { ChevronDown, Globe } from "lucide-react";
 import Image from "next/image";
+import { languages } from "@/constants";
+import { langType } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { RootState } from "@/store/store";
 import { setLanguage } from "@/store/features/language";
-import { languages } from "@/constants";
-import { langType } from "@/types";
 
 interface IProps {
   className?: string;
