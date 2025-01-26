@@ -9,7 +9,7 @@ interface IProps {
 
 const AddBannerBtn = ({ className }: IProps) => {
   return (
-    <Link href={"/advertisement"}>
+    <Link href={"/advertisement/category"}>
       <Button size="lg" className={`${className}`}>
         <h4>اضف اعلان</h4>
         <Plus />

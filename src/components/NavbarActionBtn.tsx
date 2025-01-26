@@ -16,10 +16,14 @@ const NavbarActionBtn = ({ className }: IProps = {}) => {
         </Link>
       </Button>
       <Button variant="secondary" size="icon" className={className}>
-        <BellRing />
+        <Link href="/notifications">
+          <BellRing />
+        </Link>
       </Button>
       <Button variant="secondary" size="icon" className={className}>
-        <MessagesSquare />
+        <Link href={"/messages"}>
+          <MessagesSquare />
+        </Link>
       </Button>
     </div>
   );

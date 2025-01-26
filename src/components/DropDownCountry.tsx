@@ -14,7 +14,7 @@ import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setCountry } from "@/store/features/country";
 import { RootState } from "@/store/store";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface IProps {
   className?: string;
@@ -26,14 +26,19 @@ const DropDownCountry = ({ className }: IProps) => {
   const { name_ar } = useAppSelector(
     (state: RootState) => state.Country.Country
   );
+  const [Selectcountry, setSelectCountry] = useState<string>();
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    setSelectCountry(name_ar);
+  }, [name_ar]);
 
   return (
     <DropdownMenu dir="rtl">
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className={`text-white ${className}`}>
           <MapPin />
-          {name_ar}
+          {Selectcountry}
           <ChevronDown className="w-4 h-4 mr-2" />
         </Button>
       </DropdownMenuTrigger>

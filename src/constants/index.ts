@@ -3,7 +3,7 @@ import { navigationLinkType } from "@/types";
 export const navigationLink: navigationLinkType[] = [
   { title: "الرئيسية", href: "/" },
   { title: "الأقسام", href: "/categories" },
-  { title: "إعلاناتي", href: "/banner" },
+  { title: "إعلاناتي", href: "/advertisement" },
 ];
 
 export const country = [

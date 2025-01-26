@@ -10,6 +10,7 @@ export type CategoriesKeyType =
   | "scrap"
   | "services"
   | "showroom"
+  | "showroomInfo"
   | "spare_parts"
   | "car_numbers";
 
@@ -109,7 +110,6 @@ export interface brandInProductType {
 }
 
 export interface specificationType {
-  id: number;
   product_id?: number;
   key: string;
   key_id?: number;
@@ -159,10 +159,61 @@ export interface ProductType {
   sub_category?: sub_categoryInProductType;
   model_brand?: model_brandInProductType;
   brand?: brandInProductType;
-  standardSpecification?: specificationType[];
+  standard_specification?: specificationType[];
   user?: userInProductType;
 }
 
 export interface relatedProductsType {
   related_products?: ProductType[];
+}
+
+export interface settingInLocationType {
+  user_id?: number;
+  logo?: string;
+  background_image?: string;
+  showroom_en?: string;
+  showroom_ar?: string;
+  info?: string | null;
+}
+
+export interface ShowroomByIdType {
+  id: number;
+  name?: string;
+  type?: string;
+  showroom_status?: string;
+  login_type?: string;
+  fcm?: string;
+  device_id?: string | number;
+  status?: string | boolean;
+  email?: string;
+  phone?: string;
+  latitude?: number | string;
+  longitude?: number | string;
+  email_verified_at?: string;
+  note?: string;
+  invitation_code?: string;
+  number_of_invitation_code?: number;
+  points?: number;
+  wallet?: number;
+  info?: string;
+  is_used?: number;
+  category_id?: string | number;
+  country_id?: number;
+  city_id?: number;
+  created_at?: string;
+  updated_at?: string;
+  setting?: settingInLocationType;
+  country?: countryWithProductType;
+  city?: cityType;
+  products?: ProductType[];
+  numberOfFollowers?: number;
+  numberOfProducts?: number;
+  isFollowed?: boolean;
+}
+
+export interface AllShowroomsType {
+  id: number;
+  user_id: number;
+  name: string;
+  logo: string;
 }

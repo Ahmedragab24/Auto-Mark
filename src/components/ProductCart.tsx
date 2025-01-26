@@ -37,15 +37,18 @@ const ProductContent = ({ product }: IProps) => {
       </div>
 
       {/* Speedometer and TypeCar */}
-      {Array.isArray(product.standardSpecification) &&
-        product.standardSpecification.length >= 2 &&
-        product.standardSpecification[0]?.value_ar &&
-        product.standardSpecification[1]?.value_ar && (
+      {Array.isArray(product.standard_specification) &&
+        product.standard_specification.length >= 2 &&
+        product.standard_specification[0]?.value_ar &&
+        product.standard_specification[1]?.value_ar && (
           <div className="flex items-center gap-3 text-sm text-gray-500">
             <div className="flex items-center gap-2">
               <CircleGauge className="w-5 h-5" />
-              {product.standardSpecification && (
-                <span>{product.standardSpecification[0].value_ar}</span>
+              {product.standard_specification && (
+                <div className="flex items-center gap-1">
+                  <span>{product.standard_specification[0].value_ar}</span>
+                  <span>كم</span>
+                </div>
               )}
             </div>
 
@@ -53,8 +56,8 @@ const ProductContent = ({ product }: IProps) => {
 
             <div className="flex items-center gap-2">
               <CarFront className="w-5 h-5" />
-              {product.standardSpecification && (
-                <span>{product.standardSpecification[1].value_ar}</span>
+              {product.standard_specification && (
+                <span>{product.standard_specification[1].value_ar}</span>
               )}
             </div>
           </div>

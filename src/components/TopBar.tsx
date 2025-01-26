@@ -15,7 +15,7 @@ const TopBar = () => {
           {/* Account Section */}
           {/* <UserAvatar /> */}
           <LoginModel>
-            <Button variant={"secondary"}>Login</Button>
+            <Button variant={"ghost"}>Login / Register</Button>
           </LoginModel>
 
           {/* Desktop Navigation */}

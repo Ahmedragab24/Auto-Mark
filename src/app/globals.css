@@ -80,6 +80,10 @@ body {
     background: linear-gradient(266deg, #F0B820 9.58%, #FFEA00 77.09%);
   }
 
+   .gradient-red {
+    background: linear-gradient(180deg, #B11E31 0%, #4B0D15 100%);
+  }
+
   .section {
     @apply container px-4 mx-auto my-24
   }
