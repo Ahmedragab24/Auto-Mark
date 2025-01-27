@@ -38,7 +38,7 @@ export function Breadcrumbs() {
   return (
     <nav aria-label="Breadcrumb" className="mb-4 text-sm text-gray-500">
       <ol className="inline-flex p-0 list-none">
-        <li className="flex items-center">
+        <li className="flex items-center text-bodyS md:text-sm">
           <Link
             href="/"
             className="transition-colors duration-200 ease-in-out hover:text-primary"
@@ -54,8 +54,8 @@ export function Breadcrumbs() {
           const translatedSegment = pathTranslations[segment] || segment;
 
           return (
-            <li key={href} className="flex items-center">
-              <ChevronLeftIcon className="w-4 h-4 mx-2" />
+            <li key={href} className="flex items-center text-bodyS md:text-sm">
+              <ChevronLeftIcon className="w-4 h-4 mx-1 md:mx-2" />
               {isLast ? (
                 <span className="font-medium text-gray-500">
                   {translatedSegment}

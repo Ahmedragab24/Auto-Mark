@@ -47,14 +47,11 @@ export default function LoginForm({ setTypeModel }: LoginFormProps) {
   }
 
   return (
-    <div
-      className="max-h-[80vh] flex items-center justify-center p-4"
-      dir="rtl"
-    >
+    <div className="flex items-center justify-center" dir="rtl">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-3 p-6 rounded-lg shadow-md w-full max-w-md"
+          className="flex flex-col gap-3 rounded-lg shadow-md w-full max-w-md"
         >
           <div
             className={`flex flex-col gap-3 ${
@@ -125,7 +122,7 @@ export default function LoginForm({ setTypeModel }: LoginFormProps) {
                         />
                       </FormControl>
                       {/* <FormMessage /> */}
-                      <FormMessage className="absolute right-2 -bottom-6 z-10" />
+                      <FormMessage className="absolute right-1 -bottom-6 z-10" />
                     </FormItem>
                   )}
                 />

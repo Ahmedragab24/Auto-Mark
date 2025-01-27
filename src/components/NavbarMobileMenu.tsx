@@ -36,16 +36,19 @@ const NavbarMobileMenu = () => {
         </SheetHeader>
         <div className="flex flex-col gap-8 mt-6">
           {/* Search Bar */}
-          <SearchBar />
+          <SearchBar inOpenChange={setIsMenuOpen} />
 
           {/* Navigation Links */}
-          <NavLink className="flex flex-col gap-4" />
+          <NavLink
+            className="flex flex-col gap-4"
+            inOpenChange={setIsMenuOpen}
+          />
 
           {/* Action Buttons */}
-          <NavbarActionBtn />
+          <NavbarActionBtn inOpenChange={setIsMenuOpen} />
 
           {/* Add Banner */}
-          <AddBannerBtn />
+          <AddBannerBtn inOpenChange={setIsMenuOpen} />
         </div>
       </SheetContent>
     </Sheet>

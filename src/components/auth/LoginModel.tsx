@@ -60,7 +60,7 @@ const LoginModel: React.FC<LoginModelProps> = ({ className, children }) => {
       <DialogTrigger asChild className={className}>
         {children}
       </DialogTrigger>
-      <DialogContent className="py-10">
+      <DialogContent className="w-full p-10">
         <DialogHeader className="flex flex-col gap-2 !text-center">
           <DialogTitle>
             {dialogTitles[typeModel]}

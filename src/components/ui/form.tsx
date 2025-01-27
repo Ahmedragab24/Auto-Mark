@@ -14,6 +14,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
+import { useAppSelector } from "@/store/hooks";
 
 const Form = FormProvider;
 
@@ -90,10 +91,13 @@ const FormLabel = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
 >(({ className, ...props }, ref) => {
+  const language = useAppSelector((state) => state.Language.language);
+  const direction = language === "ar" ? "rtl" : "ltr";
   const { error, formItemId } = useFormField();
 
   return (
     <Label
+      dir={direction}
       ref={ref}
       className={cn(
         error

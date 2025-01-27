@@ -36,7 +36,7 @@ const UserAvatar = () => {
           </Link>
         </DropdownMenuItem>
 
-        <Link href={"/Auth/FavoritesPage"}>
+        <Link href={"/favorites"}>
           <DropdownMenuItem className="cursor-pointer">
             Favorites
           </DropdownMenuItem>

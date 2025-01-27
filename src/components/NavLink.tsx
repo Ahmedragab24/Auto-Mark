@@ -7,9 +7,10 @@ import React from "react";
 
 interface IProps {
   className?: string;
+  inOpenChange?: (open: boolean) => void;
 }
 
-const NavLink = ({ className }: IProps) => {
+const NavLink = ({ className, inOpenChange }: IProps) => {
   const pathname = usePathname();
 
   return (
@@ -21,6 +22,7 @@ const NavLink = ({ className }: IProps) => {
           className={`font-semibold text-md transition-colors hover:text-red-700 ${
             pathname === href ? "text-primary" : ""
           }`}
+          onClick={() => inOpenChange?.(false)}
         >
           {title}
         </Link>

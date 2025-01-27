@@ -85,18 +85,16 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
   }
 
   return (
-    <div className="px-8 w-max  max-h-[80vh] md:w-[800px] lg:w-[1000px]">
-      <div className="w-full">
-        <Form {...form}>
-          <ScrollArea className="h-screen md:h-fit w-full px-4" dir="rtl">
+    <div className="flex items-center justify-center w-full">
+      <ScrollArea className="w-full h-[70vh]">
+        <div className="flex justify-center">
+          <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col md:flex-row gap-8 items-center p-4"
+              className="flex flex-col items-center max-w-4xl gap-8 md:flex-row"
+              dir="rtl"
             >
-              <div
-                className="flex flex-col md:items-center gap-6 flex-1"
-                dir="rtl"
-              >
+              <div className="flex flex-col flex-1 gap-6" dir="rtl">
                 {/* profile image */}
                 <FormField
                   control={form.control}
@@ -105,7 +103,7 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                     <FormItem>
                       <FormLabel>
                         صورة الشعار
-                        <span className="text-primary mr-1">*</span>
+                        <span className="mr-1 text-primary">*</span>
                       </FormLabel>
                       <FormControl>
                         <div className="flex items-center gap-3">
@@ -123,7 +121,7 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                             <input
                               type="file"
                               accept="image/*"
-                              className="absolute inset-0 cursor-pointer opacity-0"
+                              className="absolute inset-0 opacity-0 cursor-pointer"
                               onChange={profileImageUpload.handleChange}
                             />
                             {field.value?.preview ? (
@@ -133,13 +131,13 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                                   alt="Profile"
                                   width={128}
                                   height={128}
-                                  className="rounded-full object-cover w-full h-full"
+                                  className="object-cover w-full h-full rounded-full"
                                 />
 
                                 {field.value?.preview && (
                                   <Button
                                     variant={"destructive"}
-                                    className="w-5 h-5 absolute top-2 right-2 rounded-full p-0"
+                                    className="absolute w-5 h-5 p-0 rounded-full top-2 right-2"
                                     onClick={() =>
                                       form.setValue("profileImage", undefined)
                                     }
@@ -150,7 +148,7 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                               </>
                             ) : (
                               <div className="flex flex-col items-center gap-2 text-sm text-muted-foreground">
-                                <ImagePlus className="h-8 w-8" />
+                                <ImagePlus className="w-8 h-8" />
                               </div>
                             )}
                           </div>
@@ -187,7 +185,7 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                     <FormItem>
                       <FormLabel>
                         صورة الغلاف
-                        <span className="text-red-500 mr-1">*</span>
+                        <span className="mr-1 text-red-500">*</span>
                       </FormLabel>
                       <FormControl>
                         <div
@@ -206,7 +204,7 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                           <input
                             type="file"
                             accept="image/*"
-                            className="absolute inset-0 cursor-pointer opacity-0"
+                            className="absolute inset-0 opacity-0 cursor-pointer"
                             onChange={coverImageUpload.handleChange}
                           />
                           {field.value?.preview ? (
@@ -215,12 +213,12 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                                 src={field.value.preview || "/placeholder.svg"}
                                 alt="Cover"
                                 fill
-                                className="rounded-lg object-cover w-full h-full"
+                                className="object-cover w-full h-full rounded-lg"
                               />
                               {field.value?.preview && (
                                 <Button
                                   variant={"destructive"}
-                                  className="w-5 h-5 absolute top-2 right-2 rounded-full p-0"
+                                  className="absolute w-5 h-5 p-0 rounded-full top-2 right-2"
                                   onClick={() =>
                                     form.setValue("coverImage", undefined)
                                   }
@@ -230,8 +228,8 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                               )}
                             </>
                           ) : (
-                            <div className="flex flex-col p-10 items-center gap-2 text-bodyS text-muted-foreground">
-                              <ImagePlus className="h-8 w-8" />
+                            <div className="flex flex-col items-center gap-2 p-10 text-bodyS text-muted-foreground">
+                              <ImagePlus className="w-8 h-8" />
                               <span>قم برفع صورة أو اسحبها هنا</span>
                               <span className="text-xs">
                                 PNG, JPG, GIF حتى 10MB
@@ -265,7 +263,7 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                 />
               </div>
 
-              <div className="flex flex-col gap-6 ">
+              <div className="flex flex-col gap-6 " dir="rtl">
                 <div className="grid gap-6 md:grid-cols-2">
                   {/* Exhibition name */}
                   <FormField
@@ -275,7 +273,7 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                       <FormItem>
                         <FormLabel>
                           أسم المعرض
-                          <span className="text-primary mr-1">*</span>
+                          <span className="mr-1 text-primary">*</span>
                         </FormLabel>
                         <FormControl>
                           <div className="relative">
@@ -284,7 +282,7 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                               className="h-10 pr-10"
                               {...field}
                             />
-                            <User className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2" />
+                            <User className="absolute w-4 h-4 -translate-y-1/2 right-3 top-1/2" />
                           </div>
                         </FormControl>
                         <FormMessage />
@@ -300,7 +298,7 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                       <FormItem>
                         <FormLabel>
                           الدولة
-                          <span className="text-red-500 mr-1">*</span>
+                          <span className="mr-1 text-red-500">*</span>
                         </FormLabel>
                         <Select
                           dir="rtl"
@@ -341,7 +339,7 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                       <FormItem>
                         <FormLabel>
                           المدينة
-                          <span className="text-red-500 mr-1">*</span>
+                          <span className="mr-1 text-red-500">*</span>
                         </FormLabel>
                         <Select
                           dir="rtl"
@@ -374,7 +372,7 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                       <FormItem>
                         <FormLabel>
                           التخصص
-                          <span className="text-primary mr-1">*</span>
+                          <span className="mr-1 text-primary">*</span>
                         </FormLabel>
                         <Select
                           dir="rtl"
@@ -498,10 +496,10 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                               type="email"
                               placeholder="example@gmail.com"
                               dir="ltr"
-                              className="text-right h-10 pr-10"
+                              className="h-10 pr-10 text-right"
                               {...field}
                             />
-                            <Mail className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2" />
+                            <Mail className="absolute w-4 h-4 -translate-y-1/2 right-3 top-1/2" />
                           </div>
                         </FormControl>
                         <FormMessage />
@@ -526,7 +524,7 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                               placeholder="ادخل كلمة المرور"
                               {...field}
                             />
-                            <Lock className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2" />
+                            <Lock className="absolute w-4 h-4 -translate-y-1/2 right-3 top-1/2" />
                           </div>
                         </FormControl>
                         <FormMessage />
@@ -549,7 +547,7 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                               placeholder="تأكيد كلمة المرور"
                               {...field}
                             />
-                            <Lock className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2" />
+                            <Lock className="absolute w-4 h-4 -translate-y-1/2 right-3 top-1/2" />
                           </div>
                         </FormControl>
                         <FormMessage />
@@ -563,9 +561,9 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
                 </Button>
               </div>
             </form>
-          </ScrollArea>
-        </Form>
-      </div>
+          </Form>
+        </div>
+      </ScrollArea>
     </div>
   );
 }

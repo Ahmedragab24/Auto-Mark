@@ -114,7 +114,7 @@ const FavoriteButton = ({ product }: IProps) => {
 
       <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <AlertDialogTrigger />
-        <AlertDialogContent className="w-fit flex flex-col items-center justify-center">
+        <AlertDialogContent className="flex flex-col items-center justify-center w-full md:w-fit">
           <Image
             src={"/Icons/like-undo-bBCEvsCiK1.png"}
             alt="favorite"
