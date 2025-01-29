@@ -11,7 +11,7 @@ interface RegisterFormProps {
 const TypeRegister = ({ setTypeModel }: RegisterFormProps) => {
   return (
     <div className="w-full">
-      <div className="rounded-lg shadow-md flex flex-col gap-4 md:gap-8 items-center justify-center">
+      <div className="rounded-lg shadow-md flex flex-col gap-4 md:gap-8 items-center justify-center py-4 md:py-10 px-4">
         <div className="grid grid-cols-1 gap-6 w-max md:grid-cols-3">
           <button className="focus:outline-none group">
             <Card

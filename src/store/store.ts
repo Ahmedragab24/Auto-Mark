@@ -7,6 +7,10 @@ import { categoriesApi } from "./apis/categories";
 import { CategoriesSlice } from "./features/categories";
 import { favoritesSlice } from "./features/favorite";
 import { ShowroomProductsApi } from "./apis/showrooms";
+import { authApi } from "./apis/auth";
+import { attributesApi } from "./apis/attrbuite";
+import { filterSlice } from "./features/filter";
+import { productsNumberSlice } from "./features/productsNumber";
 // ...
 
 export const store = configureStore({
@@ -16,18 +20,24 @@ export const store = configureStore({
     Language: LanguageSlice.reducer,
     Categories: CategoriesSlice.reducer,
     Favorites: favoritesSlice.reducer,
+    filters: filterSlice.reducer,
+    productsNumber: productsNumberSlice.reducer,
+    [authApi.reducerPath]: authApi.reducer,
     [ProductsApi.reducerPath]: ProductsApi.reducer,
     [countriesApi.reducerPath]: countriesApi.reducer,
     [categoriesApi.reducerPath]: categoriesApi.reducer,
     [ShowroomProductsApi.reducerPath]: ShowroomProductsApi.reducer,
+    [attributesApi.reducerPath]: attributesApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
+      authApi.middleware,
       ProductsApi.middleware,
       ShowroomProductsApi.middleware,
       countriesApi.middleware,
-      categoriesApi.middleware
+      categoriesApi.middleware,
+      attributesApi.middleware
     ),
 });
 

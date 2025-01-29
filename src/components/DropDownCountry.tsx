@@ -26,7 +26,7 @@ const DropDownCountry = ({ className }: IProps) => {
   const { name_ar } = useAppSelector(
     (state: RootState) => state.Country.Country
   );
-  const [Selectcountry, setSelectCountry] = useState<string>();
+  const [SelectCountry, setSelectCountry] = useState<string>();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const DropDownCountry = ({ className }: IProps) => {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className={`text-white ${className}`}>
           <MapPin />
-          {Selectcountry}
+          {SelectCountry}
           <ChevronDown className="w-4 h-4 mr-2" />
         </Button>
       </DropdownMenuTrigger>

@@ -22,8 +22,16 @@ export const ProductsApi = createApi({
 
     //   Get Category Products
     getCategoryProducts: builder.query({
-      query: ({ page, countryId }: { page: number; countryId: number }) =>
-        `api/subcategories/1/products?page=${page}&country_id=${countryId}`,
+      query: ({
+        page,
+        countryId,
+        categoryId,
+      }: {
+        page: number;
+        countryId: number;
+        categoryId: number;
+      }) =>
+        `api/categories/${categoryId}/products?page=${page}&country_id=${countryId}`,
 
       // Provide tags for caching and invalidation
       providesTags: ["CategoryProducts"],

@@ -4,7 +4,7 @@ import HeroFiltering from "../HeroFiltering";
 
 export function HeroSection() {
   return (
-    <div className="relative flex flex-col gap-8 px-8 md:pt-20 py-8 justify-between w-full mt-10 overflow-hidden h-auto md:h-[500px] rounded-2xl">
+    <div className="relative flex flex-col gap-8 px-8 md:pt-20 py-8 justify-between w-full mt-10 overflow-hidden h-auto md:h-[540px] rounded-2xl">
       {/* Background Image */}
       <Image
         src="/Images/hero-bg.jpg"

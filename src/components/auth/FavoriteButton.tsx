@@ -95,7 +95,7 @@ const FavoriteButton = ({ product }: IProps) => {
       >
         {!isProductFavorite ? (
           <Image
-            src="/Icons/redHeart.png"
+            src="/Icons/heart.svg"
             alt="heart"
             width={20}
             height={20}
@@ -103,7 +103,7 @@ const FavoriteButton = ({ product }: IProps) => {
           />
         ) : (
           <Image
-            src={"/Icons/heartFill.png"}
+            src={"/Icons/heart-fill.svg"}
             alt="favorite"
             width={20}
             height={20}

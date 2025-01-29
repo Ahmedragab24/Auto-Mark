@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { Search } from "lucide-react";
-
 import {
   AccordionContent,
   AccordionItem,
@@ -11,16 +10,22 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import PriceRangeSelector from "./price-range-selector";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import type { RootState } from "@/store/store";
+import { setPriceRange, setYear, toggleFilter } from "@/store/features/filter";
+import PriceRangeSelector from "./price-range-selector";
+
+type FilterOption = {
+  id: string;
+  name_ar: string;
+};
 
 type FilterAccordionItemProps = {
   value: string;
   title: string;
-  options?: { id: string; label: string }[];
+  options?: FilterOption[];
   searchable?: boolean;
-  searchQuery?: string;
-  onSearchChange?: (value: string) => void;
   type: "checkbox" | "price" | "input";
   inputType?: "text" | "number";
   placeholder?: string;
@@ -33,12 +38,34 @@ export default function FilterAccordionItem({
   options,
   type,
   searchable = false,
-  searchQuery = "",
-  onSearchChange,
   inputType = "text",
   placeholder,
   className,
 }: FilterAccordionItemProps) {
+  const dispatch = useAppDispatch();
+  const selectedFilters = useAppSelector(
+    (state: RootState) => state.filters.selectedFilters
+  );
+  const priceRange = useAppSelector(
+    (state: RootState) => state.filters.priceRange
+  );
+  const year = useAppSelector((state: RootState) => state.filters.year);
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  const filteredOptions = React.useMemo(() => {
+    if (!searchable || !options) return options;
+    return options.filter((option) =>
+      option.name_ar.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [options, searchable, searchQuery]);
+
+  const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const yearValue = e.target.value
+      ? Number.parseInt(e.target.value, 10)
+      : null;
+    dispatch(setYear(yearValue));
+  };
+
   return (
     <AccordionItem value={value} className={`border-b-2 ${className}`}>
       <AccordionTrigger className="hover:no-underline py-2" dir="rtl">
@@ -53,7 +80,7 @@ export default function FilterAccordionItem({
                 placeholder="بحث سريع"
                 className="pr-8 h-12"
                 value={searchQuery}
-                onChange={(e) => onSearchChange?.(e.target.value)}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 type={inputType}
               />
             </div>
@@ -62,10 +89,18 @@ export default function FilterAccordionItem({
           {type === "checkbox" && (
             <ScrollArea className="h-24 w-full" dir="rtl">
               <div className="flex flex-col gap-3">
-                {options?.map((option) => (
+                {filteredOptions?.map((option) => (
                   <Label key={option.id} className="flex items-center gap-2">
-                    <Checkbox id={option.id} />
-                    <span>{option.label}</span>
+                    <Checkbox
+                      id={option.id}
+                      checked={selectedFilters[value]?.some(
+                        (item) => item.id === option.id
+                      )}
+                      onCheckedChange={() => {
+                        dispatch(toggleFilter({ category: value, option }));
+                      }}
+                    />
+                    <span>{option.name_ar}</span>
                   </Label>
                 ))}
               </div>
@@ -78,6 +113,8 @@ export default function FilterAccordionItem({
                 type={inputType}
                 placeholder={placeholder}
                 className="text-right h-12"
+                value={year || ""}
+                onChange={handleYearChange}
               />
             </div>
           )}
@@ -87,10 +124,8 @@ export default function FilterAccordionItem({
               <PriceRangeSelector
                 min={0}
                 max={1000}
-                defaultValue={[200, 800]}
-                onRangeChange={(range) =>
-                  console.log("Price range changed:", range)
-                }
+                value={priceRange}
+                onRangeChange={(range) => dispatch(setPriceRange(range))}
               />
             </div>
           )}

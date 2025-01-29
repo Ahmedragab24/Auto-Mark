@@ -27,42 +27,73 @@ import {
 import Image from "next/image";
 import { arabCountries } from "@/constants";
 import { ScrollArea } from "../ui/scroll-area";
+import { usePostRegisterMutation } from "@/store/apis/auth";
+import { Loader } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 interface RegisterFormProps {
   setTypeModel: (type: ModelType) => void;
 }
 
 export default function RegisterForm({ setTypeModel }: RegisterFormProps) {
+  const [postRegister, { isLoading, error }] = usePostRegisterMutation();
   const form = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
       name: "",
       email: "",
-      countryCode: "+971",
-      PhoneNumber: "",
+      iso_code: "+971",
+      phone: "",
       password: "",
-      confirmPassword: "",
+      // confirmPassword: "",
     },
   });
 
-  function onSubmit(values: RegisterFormData) {
+  async function onSubmit(values: RegisterFormData) {
     console.log(values);
-    // Handle form submission
-    setTypeModel("RegisterStepTwo");
+    try {
+      const result = await postRegister({
+        lang: "ar",
+        data: {
+          ...values,
+          type: "user",
+        },
+      }).unwrap();
+      console.log("User registered successfully:", result);
+      setTypeModel("RegisterStepTwo");
+      form.reset();
+    } catch (err) {
+      console.error("Error:", err);
+
+      const errorMessage =
+        error &&
+        "data" in error &&
+        typeof error.data === "object" &&
+        error.data &&
+        "message" in error.data
+          ? String((error.data as { message: string }).message)
+          : "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.";
+
+      toast({
+        title: "خطأ",
+        description: errorMessage,
+        variant: "destructive",
+      });
+    }
   }
 
   return (
-    <div className="w-full flex items-center justify-center" dir="rtl">
-      <ScrollArea className="w-full md:max-w-lg h-[70vh]">
+    <div className="flex items-center justify-center w-full" dir="rtl">
+      <ScrollArea className="w-full md:max-w-lg py-10 px-6 rounded-lg shadow-md h-[70vh]">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col w-full justify-center gap-3 p-6 rounded-lg shadow-md"
+            className="flex flex-col justify-center w-full gap-3 px-4"
           >
             <NameInput form={form} />
             <div
               className={`flex flex-col gap-3 ${
-                form.formState.errors.PhoneNumber?.message && "mb-8"
+                form.formState.errors.phone?.message && "mb-8"
               }`}
             >
               <FormLabel className="font-regular">رقم الهاتف</FormLabel>
@@ -75,7 +106,7 @@ export default function RegisterForm({ setTypeModel }: RegisterFormProps) {
                 <div className="flex-shrink-0 border-l border-border">
                   <FormField
                     control={form.control}
-                    name="countryCode"
+                    name="iso_code"
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
@@ -119,7 +150,7 @@ export default function RegisterForm({ setTypeModel }: RegisterFormProps) {
                 <div className="flex-1">
                   <FormField
                     control={form.control}
-                    name="PhoneNumber"
+                    name="phone"
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
@@ -139,7 +170,7 @@ export default function RegisterForm({ setTypeModel }: RegisterFormProps) {
             </div>
             <EmailInput form={form} />
             <PasswordInputReg form={form} name="password" />
-            <PasswordInputReg form={form} name="confirmPassword" />
+            {/* <PasswordInputReg form={form} name="confirmPassword" /> */}
 
             <Button type="submit" className="w-full">
               إنشاء حساب
@@ -152,7 +183,14 @@ export default function RegisterForm({ setTypeModel }: RegisterFormProps) {
                 className="hover:underline"
                 onClick={() => setTypeModel("Login")}
               >
-                تسجيل دخول
+                {isLoading ? (
+                  <div>
+                    <Loader className="animate-spin" />
+                    <p className="ml-2">تحميل...</p>
+                  </div>
+                ) : (
+                  <p> تسجيل دخول</p>
+                )}
               </Button>
             </div>
           </form>

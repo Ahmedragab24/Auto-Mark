@@ -1,4 +1,3 @@
-import React from "react";
 import { Cart } from "./Cart";
 import { ProductType } from "@/types";
 import SkeletonProduct from "./SkeletonProduct";

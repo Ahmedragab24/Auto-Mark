@@ -9,8 +9,14 @@ export default function Home() {
       <CategoriesSection />
       <ShortViewSection Content="Special" />
       <ShortViewSection Content="new" />
+      <ShortViewSection Content="mostView" />
+      <ShortViewSection Content="scrap" />
       <ShortViewSection Content="services" />
       <ShortViewSection Content="SpareParts" />
+      <ShortViewSection Content="carsNumbers" />
+      <ShortViewSection Content="bikes" />
+      <ShortViewSection Content="trucks" />
+      <ShortViewSection Content="boots" />
     </main>
   );
 }

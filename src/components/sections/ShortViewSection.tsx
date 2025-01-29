@@ -10,7 +10,17 @@ import { useAppSelector } from "@/store/hooks";
 import { RootState } from "@/store/store";
 
 interface IProps {
-  Content: "Special" | "new" | "services" | "SpareParts";
+  Content:
+    | "Special"
+    | "new"
+    | "mostView"
+    | "scrap"
+    | "services"
+    | "SpareParts"
+    | "carsNumbers"
+    | "bikes"
+    | "trucks"
+    | "boots";
 }
 
 const ShortViewSection = ({ Content }: IProps) => {
@@ -31,23 +41,57 @@ const ShortViewSection = ({ Content }: IProps) => {
     switch (Content) {
       case "Special":
         setProducts(data.data.premuim_Products || []);
-        setSectionTitle("مميز");
+        setSectionTitle("السيارات المميزة");
         break;
       case "new":
         setProducts(data.data.newProducts || []);
-        setSectionTitle("جديد");
+        setSectionTitle("الأحدث في السيارات");
+        break;
+      case "mostView":
+        setProducts(data.data.productsMostView || []);
+        setSectionTitle("السيارات المختارة");
+        break;
+      case "scrap":
+        setProducts(
+          data.data.categories_with_products_tow?.[0]?.products || []
+        );
+        setSectionTitle("سيارات سكراب وحوادث");
         break;
       case "services":
         setProducts(
           data.data.categories_with_products_tow?.[1]?.products || []
         );
-        setSectionTitle("خدمات");
+        setSectionTitle("الخدمات");
         break;
       case "SpareParts":
         setProducts(
           data.data.categories_with_products_tow?.[2]?.products || []
         );
         setSectionTitle("قطع غيار");
+        break;
+      case "carsNumbers":
+        setProducts(
+          data.data.categories_with_products_tow?.[3]?.products || []
+        );
+        setSectionTitle("أرقام السيارات");
+        break;
+      case "bikes":
+        setProducts(
+          data.data.categories_with_products_tow?.[4]?.products || []
+        );
+        setSectionTitle("دراجات");
+        break;
+      case "trucks":
+        setProducts(
+          data.data.categories_with_products_tow?.[5]?.products || []
+        );
+        setSectionTitle("شاحنات");
+        break;
+      case "boots":
+        setProducts(
+          data.data.categories_with_products_tow?.[6]?.products || []
+        );
+        setSectionTitle("قوارب");
         break;
       default:
         setProducts([]);

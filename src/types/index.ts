@@ -217,3 +217,47 @@ export interface AllShowroomsType {
   name: string;
   logo: string;
 }
+
+export type TypeRegister = "user" | "showroom" | "vendor";
+
+export interface RegisterFormData {
+  name: string;
+  login_type?: string;
+  email: string;
+  phone: string;
+  password: string;
+  showroom_en?: string;
+  showroom_ar?: string;
+  country_id?: number;
+  city_id?: number;
+  logo?: File;
+  background_image?: File;
+  iso_code?: string;
+  category_id?: number;
+  type: TypeRegister;
+  fcm?: string;
+  info?: string;
+}
+
+export interface BrandType {
+  id: number;
+  name_en: string;
+  name_ar: string;
+  category_id: number;
+  image?: string;
+  status?: number;
+  is_home?: number;
+  arrange?: number;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface ModelsType {
+  id: number;
+  name_en: string;
+  name_ar: string;
+  brand_id: number;
+  status?: number;
+  created_at?: string;
+  updated_at?: string;
+}

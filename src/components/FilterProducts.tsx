@@ -5,11 +5,12 @@ import SelectBrand from "./SelectBrand";
 import ProductsGrid from "./ProductsGrid";
 import PaginationProducts from "./PaginationProducts";
 import { useGetCategoryProductsQuery } from "@/store/apis/products";
-import { useAppSelector } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { RootState } from "@/store/store";
 import { CategoriesKeyType } from "@/types";
 import { useGetShowroomsProductsQuery } from "@/store/apis/showrooms";
 import ShowroomGrid from "./ShowroomGrid";
+import { setProductsNumber } from "@/store/features/productsNumber";
 
 interface IProps {
   typeCategory: CategoriesKeyType;
@@ -21,13 +22,19 @@ const FilterProducts = ({ typeCategory }: IProps) => {
   const Language = useAppSelector(
     (state: RootState) => state.Language.language
   );
+  const Category = useAppSelector(
+    (state: RootState) => state.Categories.Categories
+  );
   const [ProductList, setProductList] = useState([]);
   const [ProductError, setProductError] = useState<boolean>();
   const [ProductLoading, setProductLoading] = useState<boolean>();
+  const [ProductsOfNumber, setProductsOfNumber] = useState<number>(0);
+  const dispatch = useAppDispatch();
 
   const { data, isError, isLoading } = useGetCategoryProductsQuery({
     page: currentPage,
     countryId: Country.id,
+    categoryId: Category.id,
   });
   const {
     data: dataShowrooms,
@@ -41,9 +48,10 @@ const FilterProducts = ({ typeCategory }: IProps) => {
 
   useEffect(() => {
     if (typeCategory === "car") {
-      setProductList(data?.data?.products?.data);
+      setProductList(data?.data);
       setProductError(isError);
       setProductLoading(isLoading);
+      setProductsOfNumber(data?.total);
     }
     if (typeCategory === "showroom") {
       setProductList(dataShowrooms?.data?.showrooms?.data);
@@ -59,6 +67,14 @@ const FilterProducts = ({ typeCategory }: IProps) => {
     isLoading,
     isLoadingShowrooms,
   ]);
+
+  useEffect(() => {
+    if (ProductList) {
+      dispatch(setProductsNumber(ProductsOfNumber));
+    }
+  }, [dispatch, ProductsOfNumber, ProductList]);
+
+  console.log(ProductList);
 
   return (
     <div className="flex flex-col gap-2 pb-8" dir="ltr">
@@ -85,7 +101,7 @@ const FilterProducts = ({ typeCategory }: IProps) => {
       {/* Pagination */}
       {ProductList && ProductList.length > 0 && (
         <PaginationProducts
-          totalPages={data?.data?.products?.last_page || 0}
+          totalPages={data?.last_page || 0}
           currentPage={currentPage}
           onPageChange={setCurrentPage}
         />

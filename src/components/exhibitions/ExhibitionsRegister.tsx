@@ -85,13 +85,13 @@ export default function ExRegistrationForm({ setIsOpen }: IProps) {
   }
 
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex items-center justify-center w-full lg:w-max">
       <ScrollArea className="w-full h-[70vh]">
         <div className="flex justify-center">
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col items-center max-w-4xl gap-8 md:flex-row"
+              className="flex flex-col items-center max-w-4xl gap-8 md:flex-row px-4"
               dir="rtl"
             >
               <div className="flex flex-col flex-1 gap-6" dir="rtl">

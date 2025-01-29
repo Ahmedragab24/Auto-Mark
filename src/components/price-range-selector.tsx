@@ -4,13 +4,14 @@ import * as React from "react";
 import * as Slider from "@radix-ui/react-slider";
 import { Input } from "@/components/ui/input";
 
-interface PriceRangeSelectorProps {
-  min?: number;
-  max?: number;
+type PriceRangeSelectorProps = {
+  min: number;
+  max: number;
+  value: [number, number];
   defaultValue?: [number, number];
   step?: number;
-  onRangeChange?: (range: [number, number]) => void;
-}
+  onRangeChange: (range: [number, number]) => void;
+};
 
 export default function PriceRangeSelector({
   min = 0,

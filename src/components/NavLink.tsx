@@ -19,7 +19,7 @@ const NavLink = ({ className, inOpenChange }: IProps) => {
         <Link
           key={title}
           href={href}
-          className={`font-semibold text-md transition-colors hover:text-red-700 ${
+          className={`font-regular text-md text-gray-500 transition-colors hover:text-red-700 ${
             pathname === href ? "text-primary" : ""
           }`}
           onClick={() => inOpenChange?.(false)}

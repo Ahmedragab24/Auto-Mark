@@ -9,29 +9,28 @@ export const loginSchema = z.object({
   password: z.string().min(8, "كلمة المرور يجب أن تكون 8 أحرف على الأقل"),
 });
 
-export const registerSchema = z
-  .object({
-    name: z
-      .string()
-      .min(2, "الاسم يجب أن يكون حرفين على الأقل")
-      .max(50, "الاسم يجب أن لا يتجاوز 50 حرف"),
-    countryCode: z.string(),
-    PhoneNumber: z
-      .string()
-      .min(9, "رقم الهاتف يجب أن يكون 9 أرقام على الأقل")
-      .max(15, "رقم الهاتف يجب أن لا يتجاوز 15 رقم"),
-    email: z.string().email("البريد الإلكتروني غير صحيح"),
-    password: z
-      .string()
-      .min(8, "كلمة المرور يجب أن تكون 8 أحرف على الأقل")
-      .regex(/[A-Z]/, "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل")
-      .regex(/[0-9]/, "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل"),
-    confirmPassword: z.string(),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "كلمة المرور غير متطابقة",
-    path: ["confirmPassword"],
-  });
+export const registerSchema = z.object({
+  name: z
+    .string()
+    .min(2, "الاسم يجب أن يكون حرفين على الأقل")
+    .max(50, "الاسم يجب أن لا يتجاوز 50 حرف"),
+  iso_code: z.string(),
+  phone: z
+    .string()
+    .min(9, "رقم الهاتف يجب أن يكون 9 أرقام على الأقل")
+    .max(15, "رقم الهاتف يجب أن لا يتجاوز 15 رقم"),
+  email: z.string().email("البريد الإلكتروني غير صحيح"),
+  password: z
+    .string()
+    .min(8, "كلمة المرور يجب أن تكون 8 أحرف على الأقل")
+    .regex(/[A-Z]/, "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل")
+    .regex(/[0-9]/, "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل"),
+  // confirmPassword: z.string(),
+});
+// .refine((data) => data.password === data.confirmPassword, {
+//   message: "كلمة المرور غير متطابقة",
+//   path: ["confirmPassword"],
+// });
 
 export const SendCoderSchema = z.object({
   countryCode: z.string(),

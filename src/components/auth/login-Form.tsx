@@ -51,7 +51,7 @@ export default function LoginForm({ setTypeModel }: LoginFormProps) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-3 rounded-lg shadow-md w-full max-w-md"
+          className="flex flex-col gap-3 rounded-lg shadow-md w-full max-w-md p-8"
         >
           <div
             className={`flex flex-col gap-3 ${
