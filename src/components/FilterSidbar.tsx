@@ -5,7 +5,7 @@ import { Accordion } from "@/components/ui/accordion";
 import FilterAccordionItem from "./FilterAccordionItem";
 import { Button } from "./ui/button";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
-import type { CategoriesKeyType } from "@/types";
+import type { CategoriesKeyType, FilterSidebarType } from "@/types";
 import { useGetBrandsQuery, useGetModelsQuery } from "@/store/apis/attrbuite";
 import { X } from "lucide-react";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
@@ -16,6 +16,7 @@ import {
   setYear,
   toggleFilter,
 } from "@/store/features/filter";
+import { useGetFiltersQuery } from "@/store/apis/filtering";
 
 interface IProps {
   typeCategory: CategoriesKeyType;
@@ -33,10 +34,16 @@ export default function FilterSidebar({ typeCategory }: IProps) {
   const productsNumber = useAppSelector(
     (state: RootState) => state.productsNumber.productsNumber
   );
+  const Categories = useAppSelector(
+    (state: RootState) => state.Categories.Categories
+  );
+  const Brand = useAppSelector((state: RootState) => state.Brand);
 
-  const { data: brandsData } = useGetBrandsQuery({ id: 1 });
-  const { data: modelData } = useGetModelsQuery({ brand_id: 1 });
+  const { data } = useGetFiltersQuery({ id: Categories.id });
+  const { data: brandsData } = useGetBrandsQuery({ id: Categories.id });
+  const { data: modelData } = useGetModelsQuery({ brand_id: Brand.id });
 
+  const filters = data?.data || [];
   const brands = brandsData?.data?.brands || [];
   const models = modelData?.data || [];
 
@@ -98,7 +105,31 @@ export default function FilterSidebar({ typeCategory }: IProps) {
         <Accordion className="flex flex-row md:flex-col gap-4" type="multiple">
           {(typeCategory === "car" || typeCategory === "scrap") && (
             <>
-              <FilterAccordionItem
+              {filters.map((filter: FilterSidebarType) => (
+                <FilterAccordionItem
+                  key={filter.id}
+                  type={
+                    filter.input_type === 5
+                      ? "checkbox"
+                      : filter.input_type === 1
+                      ? "price"
+                      : filter.input_type === 2
+                      ? "input"
+                      : "input" // Default to a valid type if none match
+                  }
+                  value={filter.key}
+                  title={filter.title_ar}
+                  searchable
+                  options={
+                    filter.key === "brand"
+                      ? brands
+                      : filter.key === "model"
+                      ? models
+                      : []
+                  }
+                />
+              ))}
+              {/* <FilterAccordionItem
                 type="checkbox"
                 value="brand"
                 title="الماركة"
@@ -139,7 +170,7 @@ export default function FilterSidebar({ typeCategory }: IProps) {
                 title="ناقل الحركة"
                 searchable
                 options={models}
-              />
+              /> */}
             </>
           )}
 

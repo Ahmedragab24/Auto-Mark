@@ -11,7 +11,9 @@ import { authApi } from "./apis/auth";
 import { attributesApi } from "./apis/attrbuite";
 import { filterSlice } from "./features/filter";
 import { productsNumberSlice } from "./features/productsNumber";
-// ...
+import { BrandSlice } from "./features/brand";
+import { filteringApi } from "./apis/filtering";
+import { SearchApi } from "./apis/search";
 
 export const store = configureStore({
   reducer: {
@@ -22,12 +24,15 @@ export const store = configureStore({
     Favorites: favoritesSlice.reducer,
     filters: filterSlice.reducer,
     productsNumber: productsNumberSlice.reducer,
+    Brand: BrandSlice.reducer,
     [authApi.reducerPath]: authApi.reducer,
     [ProductsApi.reducerPath]: ProductsApi.reducer,
     [countriesApi.reducerPath]: countriesApi.reducer,
     [categoriesApi.reducerPath]: categoriesApi.reducer,
     [ShowroomProductsApi.reducerPath]: ShowroomProductsApi.reducer,
     [attributesApi.reducerPath]: attributesApi.reducer,
+    [filteringApi.reducerPath]: filteringApi.reducer,
+    [SearchApi.reducerPath]: SearchApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -37,7 +42,9 @@ export const store = configureStore({
       ShowroomProductsApi.middleware,
       countriesApi.middleware,
       categoriesApi.middleware,
-      attributesApi.middleware
+      filteringApi.middleware,
+      attributesApi.middleware,
+      SearchApi.middleware
     ),
 });
 

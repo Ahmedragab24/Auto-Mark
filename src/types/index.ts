@@ -219,12 +219,15 @@ export interface AllShowroomsType {
 }
 
 export type TypeRegister = "user" | "showroom" | "vendor";
+export type providerRegisterType = "normal" | "google" | "apple";
 
 export interface RegisterFormData {
   name: string;
-  login_type?: string;
+  login_type?: providerRegisterType;
+  type: TypeRegister;
   email: string;
   phone: string;
+  iso_code: string;
   password: string;
   showroom_en?: string;
   showroom_ar?: string;
@@ -232,9 +235,7 @@ export interface RegisterFormData {
   city_id?: number;
   logo?: File;
   background_image?: File;
-  iso_code?: string;
   category_id?: number;
-  type: TypeRegister;
   fcm?: string;
   info?: string;
 }
@@ -261,3 +262,17 @@ export interface ModelsType {
   created_at?: string;
   updated_at?: string;
 }
+
+export interface FilterSidebarType {
+  id: number;
+  title_en: string;
+  title_ar: string;
+  category_id: number;
+  input_type?: number;
+  key: string;
+  hint_en?: string | null;
+  hint_ar?: string | null;
+  is_enable?: number;
+}
+
+export type MoreProductType = "premium" | "category" | "new" | "mostViewed";

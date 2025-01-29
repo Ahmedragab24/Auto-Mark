@@ -14,10 +14,12 @@ interface IProps {
 }
 
 const FilterButtons = ({ className, items, isLoading, isError }: IProps) => {
-  const { name } = useAppSelector(
+  const { id } = useAppSelector(
     (state: RootState) => state.Categories.Categories
   );
   const dispatch = useAppDispatch();
+
+  console.log(items);
 
   return (
     <div
@@ -40,7 +42,7 @@ const FilterButtons = ({ className, items, isLoading, isError }: IProps) => {
         items.map((item) => (
           <Button
             key={item.id}
-            variant={`${item.name === name ? "default" : "secondary"}`}
+            variant={`${item.id === id ? "default" : "secondary"}`}
             className="px-8"
             onClick={() => dispatch(setCategories(item))}
           >

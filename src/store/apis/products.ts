@@ -13,8 +13,16 @@ export const ProductsApi = createApi({
   endpoints: (builder) => ({
     //   Get Home Products
     getHomeProducts: builder.query({
-      query: ({ lang, countryId }: { lang: langType; countryId: number }) =>
-        `api/products/home?lang=${lang}&country_id=${countryId}`,
+      query: ({
+        lang,
+        countryId,
+        page,
+      }: {
+        lang: langType;
+        countryId: number;
+        page?: number;
+      }) =>
+        `api/products/home?lang=${lang}&country_id=${countryId}&page=${page}`,
 
       // Provide tags for cache invalidation
       providesTags: ["HomeProducts"],

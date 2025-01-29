@@ -15,10 +15,12 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import type { RootState } from "@/store/store";
 import { setPriceRange, setYear, toggleFilter } from "@/store/features/filter";
 import PriceRangeSelector from "./price-range-selector";
+import { setBrand } from "@/store/features/brand";
 
 type FilterOption = {
   id: string;
   name_ar: string;
+  name_en?: string;
 };
 
 type FilterAccordionItemProps = {
@@ -73,7 +75,7 @@ export default function FilterAccordionItem({
       </AccordionTrigger>
       <AccordionContent>
         <div className="space-y-3 py-4 px-2">
-          {searchable && (
+          {options && options.length > 3 && searchable && (
             <div className="relative">
               <Search className="absolute right-2 top-[50%] transform translate-y-[-50%] h-4 w-4 text-primary" />
               <Input
@@ -85,6 +87,8 @@ export default function FilterAccordionItem({
               />
             </div>
           )}
+
+          {!options && <h1>لا يوجد عناصر</h1>}
 
           {type === "checkbox" && (
             <ScrollArea className="h-24 w-full" dir="rtl">
@@ -98,6 +102,9 @@ export default function FilterAccordionItem({
                       )}
                       onCheckedChange={() => {
                         dispatch(toggleFilter({ category: value, option }));
+                        if (value === "brand") {
+                          dispatch(setBrand(Number(option.id)));
+                        }
                       }}
                     />
                     <span>{option.name_ar}</span>
