@@ -5,6 +5,7 @@ import SkeletonBtn from "./SkeletonBtn";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setCategories } from "@/store/features/categories";
 import { RootState } from "@/store/store";
+import { setCurrentPage } from "@/store/features/currentPage";
 
 interface IProps {
   className?: string;
@@ -44,7 +45,10 @@ const FilterButtons = ({ className, items, isLoading, isError }: IProps) => {
             key={item.id}
             variant={`${item.id === id ? "default" : "secondary"}`}
             className="px-8"
-            onClick={() => dispatch(setCategories(item))}
+            onClick={() => {
+              dispatch(setCategories(item));
+              dispatch(setCurrentPage(1));
+            }}
           >
             {item.name}
           </Button>

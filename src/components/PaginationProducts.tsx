@@ -1,3 +1,5 @@
+// "use client";
+
 import React from "react";
 import {
   Pagination,
@@ -7,18 +9,20 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { RootState } from "@/store/store";
+import { setCurrentPage } from "@/store/features/currentPage";
 
 interface PaginationProductsProps {
-  currentPage: number;
   totalPages: number;
-  onPageChange: (page: number) => void;
 }
 
-const PaginationProducts = ({
-  currentPage,
-  totalPages,
-  onPageChange,
-}: PaginationProductsProps) => {
+const PaginationProducts = ({ totalPages }: PaginationProductsProps) => {
+  const { currentPage } = useAppSelector(
+    (state: RootState) => state.CurrentPage
+  );
+  const dispatch = useAppDispatch();
+
   const renderPageNumbers = () => {
     const visiblePages = 3; // عدد الأزرار المراد عرضها
     const halfVisible = Math.floor(visiblePages / 2);
@@ -46,7 +50,7 @@ const PaginationProducts = ({
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              onPageChange(i);
+              dispatch(setCurrentPage(i));
             }}
           >
             {i}
@@ -74,7 +78,7 @@ const PaginationProducts = ({
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              if (currentPage > 1) onPageChange(currentPage - 1);
+              if (currentPage > 1) dispatch(setCurrentPage(currentPage - 1));
             }}
           />
         </PaginationItem>
@@ -95,7 +99,8 @@ const PaginationProducts = ({
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              if (currentPage < totalPages) onPageChange(currentPage + 1);
+              if (currentPage < totalPages)
+                dispatch(setCurrentPage(currentPage + 1));
             }}
           />
         </PaginationItem>

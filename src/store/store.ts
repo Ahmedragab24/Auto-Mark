@@ -14,6 +14,7 @@ import { productsNumberSlice } from "./features/productsNumber";
 import { BrandSlice } from "./features/brand";
 import { filteringApi } from "./apis/filtering";
 import { SearchApi } from "./apis/search";
+import { CurrentPageSlice } from "./features/currentPage";
 
 export const store = configureStore({
   reducer: {
@@ -25,6 +26,7 @@ export const store = configureStore({
     filters: filterSlice.reducer,
     productsNumber: productsNumberSlice.reducer,
     Brand: BrandSlice.reducer,
+    CurrentPage: CurrentPageSlice.reducer,
     [authApi.reducerPath]: authApi.reducer,
     [ProductsApi.reducerPath]: ProductsApi.reducer,
     [countriesApi.reducerPath]: countriesApi.reducer,

@@ -13,7 +13,7 @@ import type { z } from "zod";
 
 interface PasswordInputProps {
   form: UseFormReturn<z.infer<typeof registerSchema>>;
-  name: "password" | "confirmPassword";
+  name: "password";
 }
 
 export function PasswordInputReg({ form, name }: PasswordInputProps) {

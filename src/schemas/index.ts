@@ -14,6 +14,7 @@ export const registerSchema = z.object({
     .string()
     .min(2, "الاسم يجب أن يكون حرفين على الأقل")
     .max(50, "الاسم يجب أن لا يتجاوز 50 حرف"),
+  login_type: z.enum(["normal", "google", "apple"]),
   iso_code: z.string(),
   phone: z
     .string()
@@ -25,6 +26,7 @@ export const registerSchema = z.object({
     .min(8, "كلمة المرور يجب أن تكون 8 أحرف على الأقل")
     .regex(/[A-Z]/, "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل")
     .regex(/[0-9]/, "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل"),
+  type: z.enum(["user", "showroom", "vendor"]),
   // confirmPassword: z.string(),
 });
 // .refine((data) => data.password === data.confirmPassword, {

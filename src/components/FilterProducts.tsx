@@ -4,18 +4,21 @@ import React, { useEffect, useMemo } from "react";
 import SelectBrand from "./SelectBrand";
 import ProductsGrid from "./ProductsGrid";
 import PaginationProducts from "./PaginationProducts";
-import { useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import type { CategoriesKeyType } from "@/types";
 import ShowroomGrid from "./ShowroomGrid";
-import { setProductsNumber } from "@/store/features/productsNumber";
+import { RootState } from "@/store/store";
 import { useProductData } from "@/hooks/use-productsData";
+import { setProductsNumber } from "@/store/features/productsNumber";
 
 interface IProps {
   typeCategory: CategoriesKeyType;
 }
 
 const FilterProducts: React.FC<IProps> = ({ typeCategory }) => {
-  const [currentPage, setCurrentPage] = React.useState<number>(1);
+  const { currentPage } = useAppSelector(
+    (state: RootState) => state.CurrentPage
+  );
   const dispatch = useAppDispatch();
 
   const { products, isError, isLoading, totalItems, totalPages } =
@@ -63,13 +66,7 @@ const FilterProducts: React.FC<IProps> = ({ typeCategory }) => {
       {/* Pagination */}
       {(typeCategory === "car" || typeCategory === "showroom") &&
         products &&
-        products.length > 0 && (
-          <PaginationProducts
-            totalPages={totalPages}
-            currentPage={currentPage}
-            onPageChange={setCurrentPage}
-          />
-        )}
+        products.length > 0 && <PaginationProducts totalPages={totalPages} />}
     </div>
   );
 };

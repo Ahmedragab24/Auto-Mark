@@ -13,8 +13,8 @@ import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import type { RootState } from "@/store/store";
-import { setPriceRange, setYear, toggleFilter } from "@/store/features/filter";
 import PriceRangeSelector from "./price-range-selector";
+import { setPriceRange, setYear, toggleFilter } from "@/store/features/filter";
 import { setBrand } from "@/store/features/brand";
 
 type FilterOption = {

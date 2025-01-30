@@ -36,7 +36,7 @@ const NavbarMobileMenu = () => {
         </SheetHeader>
         <div className="flex flex-col gap-8 mt-6">
           {/* Search Bar */}
-          <SearchBar inOpenChange={setIsMenuOpen} />
+          <SearchBar />
 
           {/* Navigation Links */}
           <NavLink

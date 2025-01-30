@@ -112,32 +112,32 @@ export function Footer() {
             <h3 className="mb-4 text-lg font-bold">البلدان</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="hover:text-primary">
+                <Link href="#" className="text-gray-500 hover:text-primary">
                   جمهورية مصر العربية
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary">
+                <Link href="#" className="text-gray-500 hover:text-primary">
                   الإمارات العربية المتحدة
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary">
+                <Link href="#" className="text-gray-500 hover:text-primary">
                   المملكة العربية السعودية
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary">
+                <Link href="#" className="text-gray-500 hover:text-primary">
                   مملكة البحرين
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary">
+                <Link href="#" className="text-gray-500 hover:text-primary">
                   سلطنة عمان
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary">
+                <Link href="#" className="text-gray-500 hover:text-primary">
                   الكويت
                 </Link>
               </li>
@@ -149,32 +149,32 @@ export function Footer() {
             <h3 className="mb-4 text-lg font-bold">اوتو مارك</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="hover:text-primary">
+                <Link href="#" className="text-gray-500 hover:text-primary">
                   الرئيسية
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary">
+                <Link href="#" className="text-gray-500 hover:text-primary">
                   المعارض
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary">
+                <Link href="#" className="text-gray-500 hover:text-primary">
                   اعلاناتي
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary">
+                <Link href="#" className="text-gray-500 hover:text-primary">
                   الرسائل
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary">
+                <Link href="#" className="text-gray-500 hover:text-primary">
                   الاشعارات
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary">
+                <Link href="#" className="text-gray-500 hover:text-primary">
                   المفضلة
                 </Link>
               </li>
@@ -186,22 +186,22 @@ export function Footer() {
             <h3 className="mb-4 text-lg font-bold">السياسات والقوانين</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="hover:text-primary">
+                <Link href="#" className="text-gray-500 hover:text-primary">
                   سياسة الخصوصية
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary">
+                <Link href="#" className="text-gray-500 hover:text-primary">
                   سياسة الاستخدام
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary">
+                <Link href="#" className="text-gray-500 hover:text-primary">
                   الشروط والاحكام
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary">
+                <Link href="#" className="text-gray-500 hover:text-primary">
                   ملفات الارتباط
                 </Link>
               </li>

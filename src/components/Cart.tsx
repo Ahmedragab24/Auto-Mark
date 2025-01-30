@@ -26,9 +26,11 @@ export function Cart({ product }: IProps) {
               {product && (
                 <>
                   <FavoriteButton product={product} />
-                  <span className="absolute px-4 py-2 font-medium rounded-lg right-4 gradient-spacial text-bodyS">
-                    مميز
-                  </span>
+                  {product.is_paid_advertisement && (
+                    <span className="absolute px-4 py-2 font-medium rounded-lg right-4 gradient-spacial text-bodyS">
+                      مميز
+                    </span>
+                  )}
                 </>
               )}
             </div>

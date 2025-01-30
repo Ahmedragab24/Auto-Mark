@@ -34,6 +34,7 @@ import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { ErrorBoundary } from "react-error-boundary";
 import React from "react";
+import { providerRegisterType, TypeRegister } from "@/types";
 
 interface RegisterFormProps {
   setTypeModel: (type: ModelType) => void;
@@ -63,10 +64,12 @@ export default React.memo(function RegisterForm({
     resolver: zodResolver(registerSchema),
     defaultValues: {
       name: "ahmed",
+      login_type: "normal",
       email: "ahmed@gmail.com",
-      iso_code: "+971",
       phone: "0123456789",
       password: "Superahmed24",
+      iso_code: "+971",
+      type: "user",
     },
   });
 
@@ -75,14 +78,16 @@ export default React.memo(function RegisterForm({
   const onSubmit = useCallback(
     async (values: RegisterFormData) => {
       try {
-        const result = await postRegister({
-          lang: "ar",
-          data: {
-            ...values,
-            type: "user",
-            login_type: "normal",
-          },
-        }).unwrap();
+        const requestData = {
+          name: values.name,
+          login_type: "normal" as providerRegisterType,
+          email: values.email,
+          phone: values.phone,
+          password: values.password,
+          iso_code: values.iso_code,
+          type: "user" as TypeRegister,
+        };
+        const result = await postRegister(requestData).unwrap();
 
         localStorage.setItem("userDataAutoMark", JSON.stringify(result));
         setTypeModel("RegisterStepTwo");
@@ -105,7 +110,7 @@ export default React.memo(function RegisterForm({
 
   return (
     <div className="flex items-center justify-center w-full" dir="rtl">
-      <ScrollArea className="w-full md:max-w-lg py-10 px-6 rounded-lg shadow-md h-[70vh]">
+      <ScrollArea className="w-full md:max-w-lg py-10 px-6 rounded-lg shadow-md h-[75vh]">
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <Form {...form}>
             <form

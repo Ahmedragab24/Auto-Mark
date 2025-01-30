@@ -33,4 +33,4 @@ export const favoritesSlice = createSlice({
 });
 
 export const { addToFavorites, removeFromFavorites } = favoritesSlice.actions;
-export const selectCategories = (state: RootState) => state.Favorites;
+export const selectFavorites = (state: RootState) => state.Favorites;
